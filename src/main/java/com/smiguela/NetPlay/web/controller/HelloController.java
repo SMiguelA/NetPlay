@@ -1,5 +1,6 @@
-package com.smiguela.NetPlay;
+package com.smiguela.NetPlay.web.controller;
 
+import com.smiguela.NetPlay.domain.service.NetPlayAIService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -7,11 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
     //Creamos una constante para guardar la respuesta de la AI junto con el constructor
     private final NetPlayAIService AISERVICE;
+
     public HelloController(NetPlayAIService AISERVICE) {
         this.AISERVICE = AISERVICE;
     }
 
-    @GetMapping("/")
+    @GetMapping("/gretting")
     public String hello() {
         return this.AISERVICE.generateGreeting();
     }
