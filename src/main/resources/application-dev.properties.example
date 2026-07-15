@@ -1,5 +1,13 @@
 #Podemos definir el puerto
 server.port=8090
+
+#Spring Data JPA
+#Informacion para conectar la DB creada
+spring.datasource.url=secret
+spring.datasource.username=secret
+spring.datasource.password=secret
+
+
 #Definimos el contexto de la API (Ruta base)
 server.servlet.context-path=/netplay/api
 
