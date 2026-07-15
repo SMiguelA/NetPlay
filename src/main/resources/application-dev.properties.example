@@ -7,8 +7,14 @@ spring.datasource.url=secret
 spring.datasource.username=secret
 spring.datasource.password=secret
 
+###### Para crear las tablas si no existe en nuestra BD ######
+spring.jpa.hibernate.ddl-auto=update
+### Para mostrar en la terminal el log de creacion de la tabla en la terminal ###
+spring.jpa.show-sql=true
+### Para formatear de forma mas visualmente aceptable el log de DB ###
+spring.jpa.properties.hibernate.format_sql=true
 
 #Definimos el contexto de la API (Ruta base)
 server.servlet.context-path=/netplay/api
 
-langchain4j.open-ai.chat-model.api-key=demo
+langchain4j.open-ai.chat-model.api-key=secret

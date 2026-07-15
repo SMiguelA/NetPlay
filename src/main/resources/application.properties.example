@@ -1,0 +1,11 @@
+#Se define el perfil por defecto a utilizar
+spring.profiles.active=dev
+spring.application.name=NetPlay
+
+#JPA conection with postgresql
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+
+langchain4j.open-ai.chat-model.model-name=secret
+langchain4j.open-ai.chat-model.log-requests=true
+langchain4j.open-ai.chat-model.log-responses=true
