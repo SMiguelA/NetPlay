@@ -38,3 +38,7 @@ out/
 
 ### application.properties ###
 **/src/main/resources/application.properties
+
+### Ignore DB settings ###
+docker-compose.yaml
+docker-compose.yml

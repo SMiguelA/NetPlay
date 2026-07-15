@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    restart: unless-stopped
+    environment:
+      - 'POSTGRES_DB=secret'
+      - 'POSTGRES_PASSWORD=secret'
+      - 'POSTGRES_USER=secret'
+    ports:
+      - 'secret:secret'
+    volumes:
+      - pgdata:/data/postgres
+volumes:
+  pgdata:
