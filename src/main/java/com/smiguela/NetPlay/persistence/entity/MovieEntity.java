@@ -1,5 +1,6 @@
 package com.smiguela.NetPlay.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -9,6 +10,8 @@ import java.time.LocalDate;
 @Entity
 // Como se va a llamar la tabla en la DB
 @Table(name="movies")
+// Etiqueta para organizar el JSON que devolvemos
+@JsonPropertyOrder({"id", "name", "length", "gender", "premiereDate", "classification", "isAvailable", "description"})
 public class MovieEntity {
     // Para definir que el siguiente atributo es la PK de la tabla
     @Id
