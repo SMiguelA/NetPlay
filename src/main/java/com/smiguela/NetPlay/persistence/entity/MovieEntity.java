@@ -32,7 +32,7 @@ public class MovieEntity {
     private LocalDate premiereDate;
     // con scale le decimos que maximo dos decimales para la calificacion
     @Column(precision=3, scale=2)
-    private BigDecimal classification;
+    private BigDecimal rating;
     @Column(nullable=false)
     private Boolean isAvailable;
 
@@ -77,12 +77,12 @@ public class MovieEntity {
         this.premiereDate = premiereDate;
     }
 
-    public BigDecimal getClassification() {
-        return classification;
+    public BigDecimal getRating() {
+        return rating;
     }
 
-    public void setClassification(BigDecimal classification) {
-        this.classification = classification;
+    public void setRating (BigDecimal rating) {
+        this.rating = rating;
     }
 
     public Boolean getIsAvailable() {
