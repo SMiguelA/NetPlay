@@ -3,6 +3,7 @@ package com.smiguela.NetPlay.persistence;
 import com.smiguela.NetPlay.domain.dto.MovieDto;
 import com.smiguela.NetPlay.domain.repository.MovieRepository;
 import com.smiguela.NetPlay.persistence.crud.CrudMovieEntity;
+import com.smiguela.NetPlay.persistence.entity.MovieEntity;
 import com.smiguela.NetPlay.persistence.mapper.MovieMapper;
 import org.springframework.stereotype.Repository;
 
@@ -22,5 +23,16 @@ public class MovieEntityRepository implements MovieRepository {
     @Override
     public List<MovieDto> getAll(){
         return this.movieMapper.toDtos(this.crudMovieEntity.findAll());
+    }
+
+    @Override
+    public MovieDto getById(long id){
+        return this.movieMapper.toDto(this.crudMovieEntity.findById(id).orElse(null));
+    }
+
+    @Override
+    public MovieDto createMovie(MovieDto movieDto){
+        MovieEntity movieEntity = this.movieMapper.toEntity(movieDto);
+        return this.movieMapper.toDto(this.crudMovieEntity.save(movieEntity));
     }
 }
