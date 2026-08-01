@@ -1,6 +1,7 @@
 package com.smiguela.NetPlay.persistence;
 
 import com.smiguela.NetPlay.domain.dto.MovieDto;
+import com.smiguela.NetPlay.domain.dto.UpdateMovieDto;
 import com.smiguela.NetPlay.domain.repository.MovieRepository;
 import com.smiguela.NetPlay.persistence.crud.CrudMovieEntity;
 import com.smiguela.NetPlay.persistence.entity.MovieEntity;
@@ -34,5 +35,27 @@ public class MovieEntityRepository implements MovieRepository {
     public MovieDto createMovie(MovieDto movieDto){
         MovieEntity movieEntity = this.movieMapper.toEntity(movieDto);
         return this.movieMapper.toDto(this.crudMovieEntity.save(movieEntity));
+    }
+
+    @Override
+    public MovieDto updateMovie(long id, UpdateMovieDto updateMovieDto){
+        MovieEntity movieEntity = this.crudMovieEntity.findById(id).orElse(null);
+        if(movieEntity == null){
+            return null;
+        }
+
+        if(updateMovieDto.name() != null) movieEntity.setName(updateMovieDto.name());
+        if(updateMovieDto.description() != null) movieEntity.setDescription(updateMovieDto.description());
+        if(updateMovieDto.premiereDate() != null) movieEntity.setPremiereDate(updateMovieDto.premiereDate());
+        if(updateMovieDto.rating() != null) movieEntity.setRating(updateMovieDto.rating());
+        if(updateMovieDto.isAvailable() != null) movieEntity.setIsAvailable(updateMovieDto.isAvailable());
+
+        return this.movieMapper.toDto(this.crudMovieEntity.save(movieEntity));
+    }
+
+    @Override
+    public String deleteMovie(long id){
+        this.crudMovieEntity.deleteById(id);
+        return "Movie has been deleted.";
     }
 }

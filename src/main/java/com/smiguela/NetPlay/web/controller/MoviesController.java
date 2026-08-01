@@ -1,10 +1,12 @@
 package com.smiguela.NetPlay.web.controller;
 
 import com.smiguela.NetPlay.domain.dto.MovieDto;
+import com.smiguela.NetPlay.domain.dto.UpdateMovieDto;
 import com.smiguela.NetPlay.domain.service.MovieService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import retrofit2.http.Path;
 
 import java.util.List;
 
@@ -40,5 +42,15 @@ public class MoviesController {
     public ResponseEntity<MovieDto> createMovie(@RequestBody MovieDto movieDto){
        MovieDto movie = this.movieService.createMovie(movieDto);
        return ResponseEntity.status(HttpStatus.CREATED).body(movie);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<MovieDto> updateMovie(@PathVariable long id, @RequestBody UpdateMovieDto updateMovieDto){
+        return ResponseEntity.ok(this.movieService.updateMovie(id, updateMovieDto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteMovie(@PathVariable long id){
+        return ResponseEntity.ok(this.movieService.deleteMovie(id));
     }
 }
