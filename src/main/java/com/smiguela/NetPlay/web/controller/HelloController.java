@@ -2,7 +2,6 @@ package com.smiguela.NetPlay.web.controller;
 
 import com.smiguela.NetPlay.domain.dto.SuggestRequestDto;
 import com.smiguela.NetPlay.domain.service.NetPlayAIService;
-import dev.langchain4j.service.UserMessage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

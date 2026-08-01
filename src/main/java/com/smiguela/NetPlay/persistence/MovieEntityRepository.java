@@ -2,6 +2,7 @@ package com.smiguela.NetPlay.persistence;
 
 import com.smiguela.NetPlay.domain.dto.MovieDto;
 import com.smiguela.NetPlay.domain.dto.UpdateMovieDto;
+import com.smiguela.NetPlay.domain.exception.MovieAlreadyExistException;
 import com.smiguela.NetPlay.domain.repository.MovieRepository;
 import com.smiguela.NetPlay.persistence.crud.CrudMovieEntity;
 import com.smiguela.NetPlay.persistence.entity.MovieEntity;
@@ -33,6 +34,10 @@ public class MovieEntityRepository implements MovieRepository {
 
     @Override
     public MovieDto createMovie(MovieDto movieDto){
+        if(this.crudMovieEntity.findFirstByName(movieDto.name()) != null){
+            throw new MovieAlreadyExistException(movieDto.name());
+        }
+
         MovieEntity movieEntity = this.movieMapper.toEntity(movieDto);
         return this.movieMapper.toDto(this.crudMovieEntity.save(movieEntity));
     }
