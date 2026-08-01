@@ -3,6 +3,7 @@ package com.smiguela.NetPlay.persistence;
 import com.smiguela.NetPlay.domain.dto.MovieDto;
 import com.smiguela.NetPlay.domain.dto.UpdateMovieDto;
 import com.smiguela.NetPlay.domain.exception.MovieAlreadyExistException;
+import com.smiguela.NetPlay.domain.exception.MovieDoNotExistException;
 import com.smiguela.NetPlay.domain.repository.MovieRepository;
 import com.smiguela.NetPlay.persistence.crud.CrudMovieEntity;
 import com.smiguela.NetPlay.persistence.entity.MovieEntity;
@@ -46,7 +47,7 @@ public class MovieEntityRepository implements MovieRepository {
     public MovieDto updateMovie(long id, UpdateMovieDto updateMovieDto){
         MovieEntity movieEntity = this.crudMovieEntity.findById(id).orElse(null);
         if(movieEntity == null){
-            return null;
+            throw new MovieDoNotExistException(id);
         }
 
         if(updateMovieDto.name() != null) movieEntity.setName(updateMovieDto.name());
@@ -60,6 +61,9 @@ public class MovieEntityRepository implements MovieRepository {
 
     @Override
     public String deleteMovie(long id){
+        if(this.crudMovieEntity.findById(id).orElse(null) == null){
+            throw new MovieDoNotExistException(id);
+        }
         this.crudMovieEntity.deleteById(id);
         return "Movie has been deleted.";
     }
