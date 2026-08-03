@@ -3,6 +3,8 @@ package com.smiguela.NetPlay.web.controller;
 import com.smiguela.NetPlay.domain.dto.MovieDto;
 import com.smiguela.NetPlay.domain.dto.UpdateMovieDto;
 import com.smiguela.NetPlay.domain.service.MovieService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,8 @@ import java.util.List;
 @RestController
 // Lo siguiente es para que todas las rutas dentro de este controlador tengan por defecto el path indicado el parentesis y no repetir el mismo path en cada metodo/peticion
 @RequestMapping("/movies")
+// Para nombrar y colocar descripcion del swagger, de la documentacion
+@Tag(name = "Movies", description = "Only for movies on the NetPlay platform")
 public class MoviesController {
     private final MovieService movieService;
 
@@ -39,13 +43,14 @@ public class MoviesController {
     }
 
     @PostMapping("")
-    public ResponseEntity<MovieDto> createMovie(@RequestBody MovieDto movieDto){
+    public ResponseEntity<MovieDto> createMovie(@RequestBody @Valid MovieDto movieDto){
        MovieDto movie = this.movieService.createMovie(movieDto);
+
        return ResponseEntity.status(HttpStatus.CREATED).body(movie);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MovieDto> updateMovie(@PathVariable long id, @RequestBody UpdateMovieDto updateMovieDto){
+    public ResponseEntity<MovieDto> updateMovie(@PathVariable long id, @RequestBody @Valid UpdateMovieDto updateMovieDto){
         return ResponseEntity.ok(this.movieService.updateMovie(id, updateMovieDto));
     }
 

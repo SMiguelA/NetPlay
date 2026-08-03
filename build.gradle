@@ -34,6 +34,12 @@ dependencies {
 	// MapStruct
 	implementation 'org.mapstruct:mapstruct:1.6.3'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
+
+	// Validaciones
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// Documentacion OpenAPI
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.0'
 }
 
 tasks.named('test') {

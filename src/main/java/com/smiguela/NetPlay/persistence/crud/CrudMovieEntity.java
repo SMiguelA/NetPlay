@@ -6,5 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 // Se podria cambiar CrudRepository por JpaRepository para evitar el casteo de los valores output que generemos en nustres consultas
 // Lo que se escriba dentro de esta interfaz seran Query methods (SQL)
 public interface CrudMovieEntity extends CrudRepository<MovieEntity, Long> {
+    // Esto lo traduce spring a SQL
     MovieEntity findFirstByName(String name);
 }
